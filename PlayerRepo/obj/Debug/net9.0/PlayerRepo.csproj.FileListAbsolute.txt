@@ -1,0 +1,11 @@
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\bin\Debug\net9.0\PlayerRepo.deps.json
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\bin\Debug\net9.0\PlayerRepo.dll
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\bin\Debug\net9.0\PlayerRepo.pdb
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\PlayerRepo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\PlayerRepo.AssemblyInfoInputs.cache
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\PlayerRepo.AssemblyInfo.cs
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\PlayerRepo.csproj.CoreCompileInputs.cache
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\PlayerRepo.dll
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\refint\PlayerRepo.dll
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\PlayerRepo.pdb
+C:\Users\Mus\Programmering\3SemesterEksamen\Simplere\PlayerRepo\obj\Debug\net9.0\ref\PlayerRepo.dll

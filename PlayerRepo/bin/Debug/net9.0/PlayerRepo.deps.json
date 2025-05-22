@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "PlayerRepo/1.0.0": {
+        "runtime": {
+          "PlayerRepo.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PlayerRepo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
