@@ -97,3 +97,13 @@ body, html {
     vertical-align: middle !important;
     text-align: center;
 }
+.genQrBtn {
+    max-height: 400px; 
+    width: auto;
+    transition: opacity 0.3s ;
+    cursor: pointer;
+
+}
+.genQrBtn:hover {
+    opacity: 0.75;
+}

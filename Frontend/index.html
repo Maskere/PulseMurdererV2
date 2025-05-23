@@ -21,8 +21,9 @@
                         <img src="/Assets/bloodBR.png" alt="Blood Splatter top right corner" class="splatter bottom-right">
                     </div>
                     <div v-if="!qrCodeUrl" style="align-items: center; margin-top: 25%; margin-bottom: auto;">
-                        <button id="qrBtn" class="btn btn-primary p-4" @click="getQR" style="font-size:x-large">
-                            Generate QR Code
+                        <button id="qrBtn" class="btn p-4" @click="getQR" style="font-size:x-large">
+                            <img src="/Assets/qrBtn.png" alt="Bloody QR Code Button" class="genQrBtn">
+                            <!-- Generate QR Code -->
                         </button>
                     </div>
 
