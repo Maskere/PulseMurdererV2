@@ -12,7 +12,10 @@ Vue.createApp({
                 Name: null,
                 Avatar:"",
                 IsMurderer:false,
-                IsAlive:true
+                IsAlive:true,
+                hasKilled:false,
+                hasVoted:false,
+                votesRecieved:0
             },
             Players:[],
             newPlayerId:null
@@ -40,7 +43,7 @@ Vue.createApp({
                 await this.addPlayer()
 
                 Sleep(2000)
-                window.location.href = `./playerPage.html?id=${this.newPlayerId}`
+                window.location.href = `../playerPage.html?id=${this.newPlayerId}`
             }
             catch (error) {
                 console.error('Error joining game:', error);

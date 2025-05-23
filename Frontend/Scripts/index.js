@@ -27,6 +27,7 @@ Vue.createApp({
             roundCount:0,
             result: null,
             resolving:false,
+            killer:null
         }
     },
     async created(){
@@ -119,6 +120,10 @@ Vue.createApp({
             let votedPlayers = []
 
             for(let i = 0; i < this.Players.length; i++){
+                // if(alivePlayers[i].isMurderer === true){
+                //
+                //     this.killer = alivePlayers[i]
+                // }
                 if(this.Players[i].isAlive === true){
                     alivePlayers.push(this.Players[i])
                 }
@@ -131,22 +136,25 @@ Vue.createApp({
                 if(alivePlayers[i].hasVoted){
                     votedPlayers.push(this.Players[i])
                 }
+                if(alivePlayers[i].isMurderer === true){
+                    this.killer = alivePlayers[i]
+                }
             }
 
             console.log(alivePlayers.length,votedPlayers.length)
 
-            if(alivePlayers.length <= votedPlayers.length){
+            if(alivePlayers.length <= votedPlayers.length || this.killer.hasKilled){
+                await axios.put(`${baseUrl}/${this.killer.id}`,{ "id": 0, "name": "aaaa", "avatar": "", "hasVoted": this.killer.hasVoted,"hasKilled":false, "votesRecieved": this.killer.votesRecieved, "isAlive": this.killer.isAlive, "isMurderer": this.killer.isMurderer })
+                await this.resolve()
                 const updateResponse = await axios.put(gameStateUrl+"/1",{"Round":this.roundCount+1})
                 const getGameState = await axios.get(gameStateUrl)
-                broadcastData('nextRound')
                 this.roundCount = getGameState.data
-                await this.resolve()
                 broadcastData('nextRound')
             }
             await this.determineWinner()
         },
         async resolve() {
-            if(this.resolving) return;
+            if(this.resolving || this.roundCount === 1 || this.roundCount === 3 || this.killer.hasKilled) return;
             this.resolving = true
             // Filter alive players
             await this.GetAllPlayers()

@@ -14,6 +14,7 @@ let playerId = localStorage.getItem("playerId");
 let thisPlayer = null;
 let alivePlayersLength = 0
 let round = null
+let canVote = false
 
 // const ws = new WebSocket(`ws://192.168.14.248:8082`);
 const ws = new WebSocket(`ws://192.168.0.220:8082`);
@@ -46,6 +47,7 @@ ws.onmessage = function(event){
             alivePlayersLength = reader.result
             if(reader.result === 'killed' || reader.result === 'nextRound' || reader.result === 'start'){
                 window.location.reload()
+                canVote = true
             }
         }
         reader.readAsText(event.data)
@@ -76,6 +78,7 @@ window.onload = async function () {
     await loadPlayers()
     const response = await axios.get(gameStateUrl)
     round = response.data
+    canVote = false
 
     document.getElementById("voteButton").onclick = vote;
     document.getElementById("killButton").onclick = kill;
@@ -124,14 +127,13 @@ async function loadPlayer() {
     document.getElementById("roleInfo").innerText = player.isMurderer ? "🔪 You are the Murderer" : "🧑 Civilian";
     document.getElementById("status").innerText = player.isAlive ? "Alive" : "Eliminated";
 
-    document.getElementById("voteSection").style.display = (player.hasVoted || !player.isAlive) ? "none" : "block";
-
-    console.log(round)
     if(round === 1 || round === 3){
         const shouldShowKillSection = player.isMurderer && !player.hasKilled;
         document.getElementById("killSection").style.display = shouldShowKillSection ? "block" : "none";
+        document.getElementById("voteSection").style.display = "none"
     }
     else{
+        document.getElementById("voteSection").style.display = (player.hasVoted || !player.isAlive) ? "none" : "block";
         document.getElementById("killSection").style.display = "none";
     }
 }
@@ -206,6 +208,7 @@ async function vote() {
         }
     )
     window.location.reload()
+    this.canVote = false
     alert("Vote submitted");
 }
 
