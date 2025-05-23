@@ -1,5 +1,6 @@
-const baseUrl = 'http://localhost:5174/api/players'
-const gameStateUrl = "http://localhost:5114/api/gamestate"
+// const baseUrl = 'http://192.168.14.248:5174/api/players'
+const baseUrl = "https://pulsemurdererrest-f4fxeyhwbzexezb5.northeurope-01.azurewebsites.net/api/players"
+const gameStateUrl = "https://gamerest-gdenbrcxfxggb4ar.northeurope-01.azurewebsites.net/api/GameState"
 
 function Sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
@@ -17,7 +18,7 @@ let round = null
 let canVote = false
 
 // const ws = new WebSocket(`ws://192.168.14.248:8082`);
-const ws = new WebSocket(`ws://192.168.0.220:8082`);
+const ws = new WebSocket(`ws://192.168.14.248:8082`);
 
 function broadcastData(data){
     console.log(data)
@@ -127,7 +128,7 @@ async function loadPlayer() {
     document.getElementById("roleInfo").innerText = player.isMurderer ? "🔪 You are the Murderer" : "🧑 Civilian";
     document.getElementById("status").innerText = player.isAlive ? "Alive" : "Eliminated";
 
-    if(round === 1 || round === 3){
+    if(round === 2 || round === 4){
         const shouldShowKillSection = player.isMurderer && !player.hasKilled;
         document.getElementById("killSection").style.display = shouldShowKillSection ? "block" : "none";
         document.getElementById("voteSection").style.display = "none"

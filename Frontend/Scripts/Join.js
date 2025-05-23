@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:5174/api/players"
+// const baseUrl = "http://192.168.14.248:5174/api/players"
+const baseUrl = "https://pulsemurdererrest-f4fxeyhwbzexezb5.northeurope-01.azurewebsites.net/api/players"
 
 function Sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))

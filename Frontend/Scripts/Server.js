@@ -49,7 +49,7 @@ httpServer.on("request", (req, res) => {
           <h1>WebSocket Data Display</h1>
           <div id="data"></div>
           <script>
-              const ws = new WebSocket("ws://localhost:8081");
+              const ws = new WebSocket("ws://192.168.14.248:8081");
               ws.onmessage = function(event) {
                   document.getElementById("data").innerText = event.data;
               };

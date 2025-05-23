@@ -1,13 +1,13 @@
-const baseUrl = "http://localhost:5174/api/players"
 const qrUrlApi = 'https://image-charts.com/chart?cht=qr&chs=200x200&chl='
-const gameStateUrl = "http://localhost:5114/api/gamestate"
+const gameStateUrl = "https://gamerest-gdenbrcxfxggb4ar.northeurope-01.azurewebsites.net/api/GameState"
+const baseUrl = "https://pulsemurdererrest-f4fxeyhwbzexezb5.northeurope-01.azurewebsites.net/api/players"
 
 function Sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-// const ws = new WebSocket("ws://192.168.14.248:8082")
-const ws = new WebSocket("ws://192.168.0.220:8082")
+const ws = new WebSocket("ws://192.168.14.248:8082")
+// const ws = new WebSocket("ws://192.168.0.220:8082")
 
 function broadcastData(data){
     console.log(data)
@@ -32,6 +32,7 @@ Vue.createApp({
     },
     async created(){
         await this.GetAllPlayers()
+        const setRound = await axios.put(gameStateUrl+"/1",{"Round":1})
         const response = await axios.get(gameStateUrl)
         this.roundCount = response.data
 
@@ -54,7 +55,7 @@ Vue.createApp({
         },
         async getQR() {
             try {
-                const redirectURL = 'https://localhost:8080/join.html'
+                const redirectURL = 'https://192.168.14.248:8080/join.html'
                 this.qrCodeUrl = qrUrlApi + encodeURIComponent(redirectURL) + '&chf=bg,s,00000000&icqrf=880000&icqrb=dfdcdb';
 
                 const qrCodeImage = document.getElementById('qrCodeImage');
@@ -154,7 +155,7 @@ Vue.createApp({
             await this.determineWinner()
         },
         async resolve() {
-            if(this.resolving || this.roundCount === 1 || this.roundCount === 3 || this.killer.hasKilled) return;
+            if(this.resolving || this.roundCount === 2 || this.roundCount === 4 || this.killer.hasKilled) return;
             this.resolving = true
             // Filter alive players
             await this.GetAllPlayers()
@@ -203,7 +204,7 @@ Vue.createApp({
             );
         },
         async startCountdown() {
-            const countdownDuration = 3; // Countdown duration in seconds
+            const countdownDuration = 5; // Countdown duration in seconds
             let remainingTime = countdownDuration;
 
             const countdownElement = document.getElementById('countdown');
